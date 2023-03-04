@@ -3,7 +3,7 @@
     <head> 
         <meta charset="utf-8"> 
         <meta content="width=device-width, initial-scale=1.0" name="viewport"> 
-        <title>CODA</title>
+        <title>Cityscapes</title>
         <meta content="" name="description"> 
         <meta content="" name="keywords"> 
         <!-- Favicons -->         
@@ -33,7 +33,7 @@
         <header id="header" class="fixed-top d-flex align-items-center header-transparent"> 
             <div class="container d-flex justify-content-between align-items-center">
                 <div class="logo"> 
-                    <h1 class="text-light"><a href="index.html"><span>CODA</span></a></h1>
+                    <h1 class="text-light"><a href="index.html"><span>Cityscapes</span></a></h1>
                     <!-- Uncomment below if you prefer to use an image logo -->                     
                     <!-- <a href="index.html"><img src="static/picture/logo.png" alt="" class="img-fluid"></a>-->                     
                 </div>                 
@@ -43,17 +43,21 @@
                             <a class="active" href="index.html">Home</a>
                         </li>                         
                         <li class="dropdown">
-                            <a href="./index_1.html#data_usage"><span>Documentation</span> <i class="bi bi-chevron-down"></i></a>
+                            <a href="./index_1.html#par"><span>Documentation</span> <i class="bi bi-chevron-down"></i></a>
                             <ul> 
                                 <li>
-                                    <a href="./index_1.html#data_usage">Data Usage</a>
-                                </li>                                 
+                                    <a href="./index_1.html#par">Dataset partition description</a>
+                                </li>    
+                                <li>
+                                    <a href="./index_1.html#data_usage">Data statistics</a>
+                                </li>                             
                                 <li>
                                     <a href="./index_1.html#data_format">Data Format</a>
                                 </li>                                 
                                 <li>
                                     <a href="./index_1.html#data_annotation">Data Annotation</a>
                                 </li>
+                                
                             </ul>                             
                         </li>                         
                         <li class="dropdown">
@@ -71,7 +75,7 @@
                             <a href="./index_6.html"><span>Benchmark</span> <i class="bi bi-chevron-down"></i></a> 
                             <ul> 
                                 <li>
-                                    <a href="./index_6.html">CODA Benchmark</a>
+                                    <a href="./index_6.html">algorithm benchmark</a>
                                 </li>                                 
                             </ul>                             
                         </li>                         
@@ -89,7 +93,7 @@
                 <!-- Slide 1 -->                 
                 <div class="carousel-item active"> 
                     <div class="carousel-container"> 
-                        <h2 class="animate__animated animate__fadeInDown">The CODA Dataset</h2>
+                        <h2 class="animate__animated animate__fadeInDown">The Cityscapes Dataset</h2>
                         <p class="animate__animated animate__fadeInUp">A novel road corner case dataset for object detection in autonomous driving which contains ~10000 carefully selected road driving scenes with high-quality bounding box annotation for 43 representative road object categories. 
                         </p>
                     </div>                     
@@ -98,7 +102,7 @@
                 <div class="carousel-item"> 
                     <div class="carousel-container"> 
                         <h2 class="animate__animated animate__fadeInDown">Real-World Object-Level Corner Cases</h2>
-                        <p class="animate__animated animate__fadeInUp">CODA focuses on object-level corner cases, which consist of two main collections, namely 1) instances of novel classes and 2) novel instances of common classes, constructed from major real-world object detection benchmarks for autonomous driving.
+                        <p class="animate__animated animate__fadeInUp">Cityscapes is comprised of a large, diverse set of stereo video sequences recorded in streets from 50 different cities. 5000 of these images have high-quality pixel-level annotations; 20 000 additional images have coarse annotations to enable methods that leverage large volumes of weakly-labeled data.
                         </p>
                     </div>                     
                 </div>                 
@@ -107,8 +111,8 @@
                     <div class="carousel-container"> 
                         <h2 class="animate__animated animate__fadeInDown">Reliable Object Detection</h2>
                         <p class="animate__animated animate__fadeInUp">
-                        Previous state-of-the-art object detectors trained on large-scale autonomous driving datasets suffer from a significant performance drop on CODA, suggesting that reliable object detection is still far from solved.
-                        We hope CODA can serve as a valuable resource to promote reliable object detection systems.
+                        Previous state-of-the-art object detectors trained on large-scale autonomous driving datasets suffer from a significant performance drop on Cityscapes, suggesting that reliable object detection is still far from solved.
+                        We hope Cityscapes can serve as a valuable resource to promote reliable object detection systems.
                         </p>
                     </div>                     
                 </div>                 
@@ -127,70 +131,180 @@
                 <div class="container">
                     <div class="row aos-init aos-animate" data-aos="fade-up"></div>                     
                     <h3><b>Dataset Overview</b></h3>
-                    <p> 
-                        The Cityscapes Dataset focuses on semantic understanding of urban street scenes. In the following, we give an overview on the design choices that were made to target the dataset’s focus.
-                    </p>
-                    <h3><b>Features</b></h3>
-                     <p> 
-                       <span>Polygonal annotations</span>
-                       <li>Dense semantic segmentation</li>
-                       <li>Instance segmentation for vehicle and people</li>
-                       
+                    <p>
+                        Background
                     </p>
                     <p> 
-                        <span>Complexity</span>
-                        <li>30 classes</li>
-                        <li>See Class Definitions for a list of all classes and have a look at the applied labeling policy.</li>
+                        Cordts 
+ 
+ propose the Cityscapes benchmark suite and a corresponding dataset, speciﬁcally tailored for autonomous driving in an urban environment and involving a much wider range of highly complex inner-city street scenes that were recorded in 50 different cities. Cityscapes signiﬁcantly exceed previous efforts in terms of size, annotation richness, and, more importantly, scene complexity and variability. We go beyond pixel-level semantic labeling by also considering instance-level semantic labeling in both our annotations and evaluation metrics. To facilitate research on 3D scene understanding, and provide depth information through stereo vision.
+
+Below shows one example figure(RGB) in the dataset.
+<p>
+    <img src="./static/images/background.png">
+</p>
+                    </p>
+
+
+                    <h3><b>Lifelong learning algorithm overview</b></h3>
+                    <p>
+                        Testing Open-set recognition in Curb-detection datasets
+                    </p>
+                    <span style="font-weight: bold;">About Open-set recognition</span>
+                    <p> 
+                        Traditional classiﬁers are deployed under a closed-set setting, with both training and test classes belonging to the same set. However, real-world applications probably face the input of unknown categories, and the model will recognize them as known ones. Under such circumstances, open-set recognition is proposed to maintain classiﬁcation performance on known classes and reject unknowns. The closed-set models make overconﬁdent predictions over familiar known class instances so that calibration and thresholding across categories become essential issues when extending to an open-set environment.
+
+                        This test aims to reproduce the CVPR2021 paper "Learning placeholders for open-set recognition".
                         
-                     </p>
-                     <p> 
-                        <span>Complexity</span>
-                        <li>30 classes</li>
-                        <li>See Class Definitions for a list of all classes and have a look at the applied labeling policy.</li>
+                        See here for details
+
+                    </p>
+
+
+                    <span style="font-weight: bold;">About Curb-detection datasets</span>
+                    <p> 
+                        Two datasets, SYNTHIA, and cityscape, were selected for this project. Because SYNTHIA is often easier to obtain than the real urban road dataset as simulated by the simulator in a real research environment, it is treated as known task data for model pre-training, while the real urban landscape image acquisition requires more resources and is more difficult to obtain, so it is treated as unknown task data.
+
+                    </p>
+
+
+
+                    <span style="font-weight: bold;">Benchmark Setting</span>
+                    <span>Key settings of the test environment to Open-set recognition are as follows:</span>
+                    <pre style="
+                    text-align: left;
+                    white-space: pre;
+                    display: block;
+                    overflow-x: auto;
+                    padding: 0.5em;
+                    background: rgb(240, 240, 240);
+                    color: rgb(68, 68, 68);
+                  ">
+                        <code> 
+   benchmarkingjob:
+      # job name of bechmarking; string type;
+      name: "benchmarkingjob"
+      # the url address of job workspace that will reserve the output of tests; string type;
+      workspace: "/ianvs/lifelong_learning_bench/workspace"
+    
+      # the url address of test environment configuration file; string type;
+      # the file format supports yaml/yml;
+      testenv: "./examples/curb-detection/lifelong_learning_bench/testenv/testenv.yaml"
+    
+      # the configuration of test object
+      test_object:
+        # test type; string type;
+        # currently the option of value is "algorithms",the others will be added in succession.
+        type: "algorithms"
+        # test algorithm configuration files; list type;
+        algorithms:
+          # algorithm name; string type;
+          - name: "rfnet_lifelong_learning"
+            # the url address of test algorithm configuration file; string type;
+            # the file format supports yaml/yml
+            url: "./examples/curb-detection/lifelong_learning_bench/testalgorithms/rfnet/rfnet_algorithm.yaml"
+                        </code>
+                    </pre>
+
+                    <span>
+                        Key settings of the algorithm are as follows:
+                    </span>
+                    <pre style="
+                    text-align: left;
+                    white-space: pre;
+                    display: block;
+                    overflow-x: auto;
+                    padding: 0.5em;
+                    background: rgb(240, 240, 240);
+                    color: rgb(68, 68, 68);
+                  ">
+                        <code> 
+    algorithm:
+    # paradigm type; string type;
+    # currently the options of value are as follows:
+    #   1> "singletasklearning"
+    #   2> "incrementallearning"
+    #   3> "lifelonglearning"
+    paradigm_type: "lifelonglearning"
+    lifelong_learning_data_setting:
+        # ratio of training dataset; float type;
+        # the default value is 0.8.
+        train_ratio: 0.8
+        # the method of splitting dataset; string type; optional;
+        # currently the options of value are as follows:
+        #   1> "default": the dataset is evenly divided based train_ratio;
+        splitting_method: "default"
+
+    # algorithm module configuration in the paradigm; list type;
+    modules:
+        # type of algorithm module; string type;
+        # currently the options of value are as follows:
+        #   1> "basemodel": contains important interfaces such as train、 eval、 predict and more; required module;
+        - type: "basemodel"
+        # name of python module; string type;
+        # example: basemodel.py has BaseModel module that the alias is "FPN" for this benchmarking;
+        name: "BaseModel"
+        # the url address of python module; string type;
+        url: "./examples/curb-detection/lifelong_learning_bench/testalgorithms/rfnet/basemodel.py"
+        # hyperparameters configuration for the python module; list type;
+        hyperparameters:
+            # name of the hyperparameter; string type;
+            - learning_rate:
+                values:
+                - 0.0001
+        #  2> "task_definition": define lifelong task ; optional module;
+        - type: "task_definition"
+        # name of python module; string type;
+        name: "TaskDefinitionByOrigin"
+        # the url address of python module; string type;
+        url: "./examples/curb-detection/lifelong_learning_bench/testalgorithms/rfnet/task_definition_by_origin.py"
+        # hyperparameters configuration for the python module; list type;
+        hyperparameters:
+            # name of the hyperparameter; string type;
+            # origins of data; value is ["real", "sim"], this means that data from real camera and simulator.
+            - origins:
+                values:
+                - [ "real", "sim" ]
+        #  3> "task_allocation": allocate lifelong task ; optional module;
+        - type: "task_allocation"
+        # name of python module; string type;
+        name: "TaskAllocationByOrigin"
+        # the url address of python module; string type;
+        url: "./examples/curb-detection/lifelong_learning_bench/testalgorithms/rfnet/task_allocation_by_origin.py"
+        # hyperparameters configuration for the python module; list type;
+        hyperparameters:
+            # name of the hyperparameter; string type;
+            # origins of data; value is ["real", "sim"], this means that data from real camera and simulator.
+            - origins:
+                values:
+                - [ "real", "sim" ]
+        - type: "unknow_task_recognition"
+        # name of python module; string type;
+        name: "SampleRegonitionByScene"
+        # the url address of python module; string type;
+        url: "./examples/curb-detection/lifelong_learning_bench/testalgorithms/rfnet/unknow_task_recognition.py"
+            # hyperparameters configuration for the python module; list type;
+        hyperparameters:
+            -model_path:
+            values:
+                - "/examples/curb-detection/lifelong_learning_bench/testalgorithms/rfnet/results/Epochofprose17.pth"
+                        </code>
+                    </pre>
+                
+                    <span style="font-weight: bold;margin-top: 20px;display: inline-block;">About Curb-detection datasets</span>
+                    <p> 
+                        Two datasets, SYNTHIA, and cityscape, were selected for this project. Because SYNTHIA is often easier to obtain than the real urban road dataset as simulated by the simulator in a real research environment, it is treated as known task data for model pre-training, while the real urban landscape image acquisition requires more resources and is more difficult to obtain, so it is treated as unknown task data.
+
+                    </p>
+                   
+                     <h3>Data sample display</h3>
+                    <p>
+                        <img src="./static/images/2.1.png" style="margin-bottom: 20px;">
                         
-                     </p>
-                     <p> 
-                        <span>Diversity</span>
-                        <li>50 cities</li>
-                        <li>Several months (spring, summer, fall)</li>
-                        <li>Daytime</li>
-                        <li>Good/medium weather conditions</li>
-                        <li>
-                            Manually selected frames
-                            <li style="margin-left: 20px;">Large number of dynamic objects</li>
-                            <li style="margin-left: 20px;">Varying scene layout</li>
-                            <li style="margin-left: 20px;">Varying background
-                            </li>
-                        </li>
-                        <li>Volume
-                            <li style="margin-left: 20px;">5 000 annotated images with fine annotations (examples)</li>
-                            <li style="margin-left: 20px;">20 000 annotated images with coarse annotations (examples)</li>
-                        </li>
-                        <li>Metadata
-                            <li style="margin-left: 20px;">Preceding and trailing video frames. Each annotated image is the 20th image from a 30 frame video snippets (1.8s)</li>
-                            <li style="margin-left: 20px;">Corresponding right stereo views</li>
-                            <li style="margin-left: 20px;">GPS coordinates</li>
-                            <li style="margin-left: 20px;">Ego-motion data from vehicle odometry</li>
-                            <li style="margin-left: 20px;">Outside temperature from vehicle sensor</li>
-                 
-                        </li>
-                    
-                        <li>Extensions by other researchers
-                            <li style="margin-left: 20px;">Bounding box annotations of people</li>
-                            <li style="margin-left: 20px;">Images augmented with fog and rain</li>  
-                        </li>
-                        <li>Benchmark suite and evaluation server
-                            <li style="margin-left: 20px;">Pixel-level semantic labeling</li>
-                            <li style="margin-left: 20px;">Instance-level semantic labeling</li>
-                            <li style="margin-left: 20px;">Panoptic semantic labeling</li>            
-                        </li>
-                     </p>
-                     <h3><b>Labeling Policy</b></h3>
-                     <p> 
-                        Labeled foreground objects must never have holes, i.e. if there is some background visible ‘through’ some foreground object, it is considered to be part of the foreground. This also applies to regions that are highly mixed with two or more classes: they are labeled with the foreground class. Examples: tree leaves in front of house or sky (everything tree), transparent car windows (everything car).
-                       
-                    </p>  
-                    <h3><b>Class Definitions</b></h3>
+                        <img src="./static/images/2.2.png">
+                    </p>
+                     
+                    <!-- <h3><b>Class Definitions</b></h3>
                     <span>Please click on the individual classes for details on their definitions.</span>
                      <p>
                         <table>
@@ -234,7 +348,7 @@
                          </table>
                     </p>  
                     * Single instance annotations are available. However, if the boundary between such instances cannot be clearly seen, the whole crowd/group is labeled together and annotated as group, e.g. car group.
-                    + This label is not included in any evaluation and treated as void (or in the case of license plate as the vehicle mounted on).
+                    + This label is not included in any evaluation and treated as void (or in the case of license plate as the vehicle mounted on). -->
                     <div class="col-md-7 order-2 order-md-1 pt-5">
                     </div>
                     

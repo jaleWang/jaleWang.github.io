@@ -3,7 +3,7 @@
     <head> 
         <meta charset="utf-8"> 
         <meta content="width=device-width, initial-scale=1.0" name="viewport"> 
-        <title>CODA-Download</title>         
+        <title>CITYSCAPES-Download</title>         
         <meta content="" name="description"> 
         <meta content="" name="keywords"> 
         <!-- Favicons -->         
@@ -33,7 +33,7 @@
         <header id="header" class="fixed-top d-flex align-items-center"> 
             <div class="container d-flex justify-content-between align-items-center">
                 <div class="logo"> 
-                    <h1 class="text-light"><a href="index.html"><span>CODA</span></a></h1>
+                    <h1 class="text-light"><a href="index.html"><span>CITYSCAPES</span></a></h1>
                     <!-- Uncomment below if you prefer to use an image logo -->                     
                     <!-- <a href="index.html"><img src="static/picture/logo.png" alt="" class="img-fluid"></a>-->                     
                 </div>                 
@@ -46,15 +46,19 @@
                             <a href="./index_1.html#data_usage"><span>Documentation</span> <i class="bi bi-chevron-down"></i></a>
                             <ul> 
                                 <li>
-                                    <a href="./index_1.html#data_usage">Data Usage</a>
-                                </li>                                 
+                                    <a href="./index_1.html#par">Dataset partition description</a>
+                                </li>    
+                                <li>
+                                    <a href="./index_1.html#data_usage">Data statistics</a>
+                                </li>                             
                                 <li>
                                     <a href="./index_1.html#data_format">Data Format</a>
                                 </li>                                 
                                 <li>
                                     <a href="./index_1.html#data_annotation">Data Annotation</a>
                                 </li>
-                            </ul>                             
+                                
+                            </ul>                          
                         </li>                         
                         <li class="dropdown">
                             <a href="./index_4.html"><span>Download</span> <i class="bi bi-chevron-down"></i></a>
@@ -71,7 +75,7 @@
                             <a href="./index_6.html"><span>Benchmark</span> <i class="bi bi-chevron-down"></i></a> 
                             <ul> 
                                 <li>
-                                    <a href="./index_6.html">CODA Benchmark</a>
+                                    <a href="./index_6.html">algorithm benchmark</a>
                                 </li>                                 
                             </ul>                             
                         </li>                         
@@ -92,33 +96,60 @@
                     <div class="row aos-init aos-animate" data-aos="fade-up"></div>              
                     <span class="anchor" id="instructions"></span>
                     <h3><b>Instructions</b></h3>
-                    <p>The instructions for downloading CODA is listed as follows:</p>
-                    <ol>
-                      <li>Download the CODA dataset files using the link provided below and then decompress.</li>
-                      <li>Check the <a href="./documentation.html">CODA Documentation</a> page and the included README file for specific usages of CODA dataset, especially for the related data of KITTI and nuScenes datasets. </li>
-                    </ol>
+                    <p>The instructions for downloading Cityscapes is listed as follows:</p>
+        
                     <p> After decompression, the data organization is listed as follows: </p>
                     <pre style="text-align: left; white-space: pre; display: block; overflow-x: auto; padding: 0.5em; background: rgb(240, 240, 240); color: rgb(68, 68, 68);">
-<code><b>"CODA":</b> {
-    |---base-val-1500                           
-        |---corner_case.json            -- COCO-style annotation
-        |---kitti_indices.json          -- KITTI sample indices
-        |---nuscenes_sample_tokens.json -- nuScenes sample tokens
-        |---images                      -- ONCE images (also included in CODA2022 validation)
-            |---*_*.jpg
-        |---README.md                   -- Detailed instructions about CODA Base Val usage                 
-    |---sample                          -- Proper subset of CODA base validation set 
-        |---corner_case.json            
-        |---images        
-            |---*_*.jpg     
-    |---val                             -- CODA2022 validation set 
-        |---annotations.json            
-        |---images        
-            |---*_*.jpg     
-    |---test                            -- CODA2022 test set 
-        |---images        
-            |---*_*.jpg     
-    |---README.md                       -- Detailed instructions about CODA usage
+<code><b>"Cityscapes":</b> {
+    ├─Cityscapes Dataset
+    ├─disparity
+    │  ├─test
+    │  │  ├─berlin
+    │  │  ├─bielefeld
+    │  │  ├─bonn
+    │  │  ├─...
+    │  │  └─munich
+    │  ├─train
+    │  │  ├─01_Hanns_Klemm_Str_45
+    │  │  ├─03_Hanns_Klemm_Str_19
+    │  │  ├─...
+    │  │  └─zurich
+    │  └─val
+    │      ├─02_Hanns_Klemm_Str_44
+    │      ├─04_Maurener_Weg_8
+    │      ├─05_Schafgasse_1
+    │      ├─...
+    │      └─munster
+    ├─gtFine
+    │  ├─train
+    │  │  ├─01_Hanns_Klemm_Str_45
+    │  │  ├─03_Hanns_Klemm_Str_19
+    │  │  ├─...
+    │  │  └─zurich
+    │  └─val
+    │      ├─02_Hanns_Klemm_Str_44
+    │      ├─04_Maurener_Weg_8
+    │      ├─05_Schafgasse_1
+    │      ├─...
+    │      └─munster
+    └─leftImg8bit
+        ├─test
+        │  ├─berlin
+        │  ├─bielefeld
+        │  ├─bonn
+        │  ├─...
+        │  └─munich
+        ├─train
+        │  ├─01_Hanns_Klemm_Str_45
+        │  ├─03_Hanns_Klemm_Str_19
+        │  ├─...
+        │  └─zurich
+        └─val
+            ├─02_Hanns_Klemm_Str_44
+            ├─04_Maurener_Weg_8
+            ├─05_Schafgasse_1
+            ├─...
+            └─munster
 }
 </code></pre>
                     <div class="row aos-init aos-animate" data-aos="fade-up">
@@ -126,16 +157,14 @@
                         </div>                         
                     </div>
                     
-                    <span class="anchor" id="link"></span>
+                    <span class="anchor" id="links"></span>
                     <h3><b>Download Links</b></h3>
                     <p class="fst-italic"> 
-                        The ground truth annotation of CODA2022 test set will be released after the SSLAD challenge, and extraction code for Baidu Yunpan is 4wbz. </br>
+                        Cityscapes dataset </br>
                     </p>
                     <p> 
-                        Download link for CODA sample set (~100 images):  [<a href="assets/file/coda_sample.zip" target="_blank">Link</a>]</br>
-                        Download link for CODA base val set:  [<a href="https://drive.google.com/file/d/1JQPY5RjO2eixF9oGIQtk87FIkJefmhMM/view?usp=share_link" target="_blank">Google Drive</a>] [<a href="https://pan.baidu.com/s/1n0Mrq8cIhYqacH3qaGhG0Q" target="_blank">Baidu Yunpan</a>]</br>
-                        Download link for CODA2022 val set (images with annotations):  [<a href="https://drive.google.com/file/d/1s7T20mwAuIGKIbGcKRoy2MIkI4VfBdyQ/view?usp=sharing" target="_blank">Google Drive</a>]</br>
-                        Download link for CODA2022 test set (images w/o annotations):  [<a href="https://drive.google.com/file/d/1PJIDhoQHa1OLqJG1-VigPGGQ65n95ttt/view?usp=sharing" target="_blank">Google Drive</a>]</br>
+                        Download link:  <a href="https://www.cityscapes-dataset.com/login/" target="_blank">cityscapes</a></br>
+                        paper link:  <a href="https://www.cityscapes-dataset.com/wordpress/wp-content/papercite-data/pdf/cordts2016cityscapes.pdf" target="_blank">The Cityscapes Dataset for Semantic Urban Scene Understanding</a>
                     </p>
 
                     <div class="row aos-init aos-animate" data-aos="fade-up">
